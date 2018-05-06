@@ -78,7 +78,7 @@ querystring = querystring + req.body.option3 + "','" + req.body.option4 + "','" 
 
 });
 //View data(fixed path) in JSON format
-//This action is to make sure the data is successfully parse into JSON 
+//This action is to make sure 'question' is successfully parse into JSON 
 app.get('/getPOI', function (req,res){
 	pool.connect(function(err,client,done){
 		if(err){
@@ -87,8 +87,8 @@ app.get('/getPOI', function (req,res){
 		}
 		var querystring = " SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features  FROM ";
         	querystring = querystring + "(SELECT 'Feature' As type     , ST_AsGeoJSON(lg.geom)::json As geometry, ";
-        	querystring = querystring + "row_to_json((SELECT l FROM (SELECT id, name, category) As l      )) As properties";
-        	querystring = querystring + "   FROM united_kingdom_poi  As lg limit 100  ) As f ";
+        	querystring = querystring + "row_to_json((SELECT l FROM (SELECT id, location_name, option1,option2,option3,option4,correct_answer) As l      )) As properties";
+        	querystring = querystring + "   FROM question  As lg limit 100  ) As f ";
         	console.log(querystring);
         	client.query(querystring,function(err,result){
 
