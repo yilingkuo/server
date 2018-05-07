@@ -47,6 +47,7 @@ app.use(bodyParser.json());
 		next();
 	});
 
+//This path connect to public.question table and insert value one at a time
 app.post('/uploadData',function(req,res){
 	// using POST to upload data
 	// so the parameters form part of the BODY of the request rather than the RESTful API
@@ -77,6 +78,34 @@ querystring = querystring + req.body.option3 + "','" + req.body.option4 + "','" 
     });
 
 });
+
+//This path connect to public.user_answer table and insert value one at a time
+app.post('/uploadAnswer',function(req,res){
+	// using POST to upload data
+	// so the parameters form part of the BODY of the request rather than the RESTful API
+	console.dir(req.body);
+
+ 	pool.connect(function(err,client,done) {
+       	if(err){
+          	console.log("not able to get connection "+ err);
+           	res.status(400).send(err);
+       	}	
+
+var querystring = "INSERT into public.user_answer (question_id, user_name, answer)values ('";
+querystring = querystring + req.body.questionid + "','" + req.body.user_name + "','" + req.body.answer+ "')";
+       	console.log(querystring);
+       	client.query( querystring,function(err,result) {
+          done(); 
+          if(err){
+               console.log(err);
+               res.status(400).send(err);
+          }
+          res.status(200).send("answer row inserted");
+       });
+    });
+
+});
+
 //View data(fixed path) in JSON format
 //This action is to make sure 'question' is successfully parse into JSON 
 app.get('/getPOI', function (req,res){
@@ -167,46 +196,4 @@ app.get('/getGeoJSON/:tablename/:geomcolumn', function (req,res) {
 		next();
 	});
 	
-
-
-
-
-	// the / indicates the path that you type into the server - in this case, what happens when you type in:  http://developer.cege.ucl.ac.uk:32560/xxxxx/xxxxx
-  app.get('/:name1', function (req, res) {
-  // run some server-side code
-  // the console is the command line of your server - you will see the console.log values in the terminal window
-  console.log('request '+req.params.name1);
-
-  // the res is the response that the server sends back to the browser - you will see this text in your browser window
-  res.sendFile(__dirname + '/'+req.params.name1);
-});
-
-
-  // the / indicates the path that you type into the server - in this case, what happens when you type in:  http://developer.cege.ucl.ac.uk:32560/xxxxx/xxxxx
-    app.get('/:name1/:name2', function (req, res) {
-	  // run some server-side code
-	  // the console is the command line of your server - you will see the console.log values in the terminal window
-	  console.log('request '+req.params.name1+"/"+req.params.name2);
-	  // the res is the response that the server sends back to the browser - you will see this text in your browser window
-	  res.sendFile(__dirname + '/'+req.params.name1+'/'+req.params.name2);
-	});
-
-
-  // the / indicates the path that you type into the server - in this case, what happens when you type in:  http://developer.cege.ucl.ac.uk:32560/xxxxx/xxxxx/xxxx
-  app.get('/:name1/:name2/:name3', function (req, res) {
-  	// run some server-side code
-  	// the console is the command line of your server - you will see the console.log values in the terminal window
-  	console.log('request '+req.params.name1+"/"+req.params.name2+"/"+req.params.name3); 
-  	// send the response
-  	res.sendFile(__dirname + '/'+req.params.name1+'/'+req.params.name2+ '/'+req.params.name3);
-  });
-  // the / indicates the path that you type into the server - in this case, what happens when you type in:  http://developer.cege.ucl.ac.uk:32560/xxxxx/xxxxx/xxxx
-  app.get('/:name1/:name2/:name3/:name4', function (req, res) {
-  // run some server-side code
-  // the console is the command line of your server - you will see the console.log values in the terminal window
- console.log('request '+req.params.name1+"/"+req.params.name2+"/"+req.params.name3+"/"+req.params.name4); 
-  // send the response
-  res.sendFile(__dirname + '/'+req.params.name1+'/'+req.params.name2+ '/'+req.params.name3+"/"+req.params.name4);
-});
-
 
