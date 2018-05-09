@@ -2,7 +2,21 @@
 Server for Question App and Movie Quiz App. 
 
 ## Technical Guide
-Need three repositories to set the whole game: `quiz`,`question`,and `server`repositories.
+Need three repositories to set the whole game: `quiz`,`question`,and `server`repositories. And a Android mobile phone.
+
+### Preparing your phone
+To download the app, goes to android phone and allow installation of apps from unknown sources. Goes to **Setting**->**Additional settings**->**Safety and privacy**, under **Device adminstration** control, then turn on the **Unknown source**.
+
+One can use QR code reader through these QR code or go to the webpage to find them.
+
+[Question App](https://build.phonegap.com/apps/3143997/share)
+
+![alt text](https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://build.phonegap.com/apps/3143997/install/i5m_F29VDdeUssRkgrvX&chld=L|1&choe=UTF-8)
+
+[Quiz App](https://build.phonegap.com/apps/3153340/share)
+
+![alt text](https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://build.phonegap.com/apps/3153340/install/xry4UdXysrW5tbDNdGGS&chld=L|1&choe=UTF-8)
+
 ### Preparing Servers
 As the Apps are develop under development server `developer.cege.ucl.ac.uk`, both laptop and mobile device must connect to UCL network (vpn.ucl.ac.uk) via VPN apps (e.g. Cisco AnyConnect)
 
