@@ -47,6 +47,10 @@ The port detail of database connection is stored in Ubuntu server (`/home/studen
 ## Summary
 Most test are easier carried out on web version on Chrome since the browser have nice debugging ability.
 The IE web version of both apps perform the best among Chrome, IE and mobile PhoneGap App. As AJAX the function serving file on server works only on IE. Thus web version can monitor the detail of all errors, easier to handle errors.
+### Javascript practice
+* Many variables needed to be difined beforehand. And it might cause conflict if one variable already exist in resource libraries. Solution is to avoid global variables.
+* As it doesn't have strong type when define variables, use '===' and '!==' instead of '==' or '=' to check type matches.
+
 ### About the Apps
 * Quiz app the loop of checking correct answer works. 
   * Successed in loading question layer but failed at creating Approxiate seacrch.
@@ -58,7 +62,7 @@ The IE web version of both apps perform the best among Chrome, IE and mobile Pho
 * And to fit the same content on different size of device are not easy. As so, the user guide in `HELP` button needs more work digging into proper `css` style.
 
 ### About server and database
-* Without Database quesry support, the comparing or filtering iis more complex without constraint check.
+* Without Database quesry support, the comparing or filtering is more complex without constraint check. 
 * As Node.js Express Framework use `app.use(express.static(__dirname));` allow us get static file 
 on ubuntu server. The AJAX action are easier achieved.
 
