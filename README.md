@@ -2,25 +2,33 @@
 Server for Question App and Movie Quiz App. 
 
 ## Technical Guide
-needed three repositories to set the whole game: `quiz`,`question`,and `server`repositories.
+Need three repositories to set the whole game: `quiz`,`question`,and `server`repositories.
 ### Preparing Servers
-As the Apps are develop under development server `developer.cege.ucl.ac.uk`, 
-### Get two apps from GitHub
+As the Apps are develop under development server `developer.cege.ucl.ac.uk`, both laptop and mobile device must connect to UCL network (vpn.ucl.ac.uk) via VPN apps (e.g. Cisco AnyConnect)
 
-To make the apps work, there will be two servers running at the same time: HTTP server access to Ubuntu machine; PhoneGap server access to app. 
+### Get two apps from GitHub
+To make the apps work, there will be two servers running at the same time: HTTP server access to Ubuntu machine; PhoneGap server access to app. Make sure to connect to UCL network before using your Ubuntu server (here we use BitWise to login to Ubuntu, the SSH port i use on  `developer.cege.ucl.ac.uk`host is 30069).
+
 ### Open Apps in web version
 1. Go to `server` folder in commend line terminal and trigger Node.js
 ```
 cd code/server
 node httpServer.js
 ```
-2. Move back a layer and shift to app repository (take `quiz` for example)
+2. Move back a layer and shift to app repository to 'ucesyku' folder where the app is stored. Trigger PhoneGap server by command: `phonegap serve`(take `quiz` for example)
 ```
 cd ..
-cd quiz/
-node httpServer.js
+cd quiz/ucesyku
+phonegap serve
 ```
 ### Open Apps on mobile device
+Since the App become individual and itself connects to PhoneGap server, user only need to connect HTTP server from terminal. Remember that mobile device also need to open VPN to link to database!
+```
+cd code/server
+node httpServer.js
+```
+### Database side
+The port detail of database connection is stored in Ubuntu server (`/home/studentuser/certs`). It contain the detail of PostgreSQL database. The HTTP server will then link to database and provide REST service that retrieve question data (GET) and upload answer and question form(POST). 
 
 ## Summary
 Most test are easier carried out on web version on Chrome since the browser have nice debugging ability.
